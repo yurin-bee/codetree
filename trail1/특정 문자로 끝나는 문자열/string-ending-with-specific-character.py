@@ -4,6 +4,10 @@ for i in range(10):
     lst.append(word)
 n = input()
 
-for w in lst[::-1]:
-    if w[-1] == n
+hey = False
+for w in lst:
+    if w[-1] == n:
         print(w)
+        hey = True
+if hey == False:
+    print("None")
