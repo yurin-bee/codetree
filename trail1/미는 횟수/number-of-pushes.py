@@ -1,9 +1,15 @@
 A= input()
 B= input()
 
-cnt = 0
+yes = False
 for i in range(1, len(A)+1):
-    cnt += 1
-    if A[i:] + A[:i] == B:
+    if A[-i:] + A[:-i] == B:
+        yes = True
         break
-print(cnt)
+    else:
+        yes = False
+        
+if yes == True:
+    print(i)
+else:
+    print(-1)
