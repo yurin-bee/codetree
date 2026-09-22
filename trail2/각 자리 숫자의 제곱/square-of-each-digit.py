@@ -5,5 +5,5 @@ N = int(input())
 def func(N):
     if N % 10 == N:
         return N ** 2
-    return func(N//10**2) + N%10**2
+    return (N % 10) ** 2 + func(N//10)
 print(func(N))
