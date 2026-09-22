@@ -5,8 +5,8 @@ queries = [tuple(map(int, input().split())) for _ in range(m)]
 # Please write your code here.
 
 
-def hap(queries, arr):
+def hap(queries):
     for q1, q2 in queries:
         print(sum(arr[q1-1:q2]))
 
-hap(queries, arr)
+hap(queries)
