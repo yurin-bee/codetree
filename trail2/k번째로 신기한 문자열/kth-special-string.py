@@ -8,4 +8,4 @@ for string in str:
     if string[0:len(t)] == t:
         dictionary.append(string)
 dictionary.sort()
-print(dictionary[k])
+print(dictionary[k-1])
