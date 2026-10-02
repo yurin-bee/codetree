@@ -2,7 +2,7 @@ n, k = map(int, input().split())
 commands = [tuple(map(int, input().split())) for _ in range(k)]
 
 # Please write your code here.
-arr = [0] * n
+arr = [0] * (n+1)
 for start, end in commands:
     for i in range(start,end+1):
         arr[i] += 1
