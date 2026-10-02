@@ -7,6 +7,9 @@ while True:
     if n < 2:
         arr.append(1)
         break
+    if n == 0:
+        arr.append(0)
+        break
     arr.append(n%2)
     n //= 2 
 
