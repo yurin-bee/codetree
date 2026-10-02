@@ -13,4 +13,4 @@ for i in range(1, n+1):
     cur += diff[i]
     arr[i] = cur
 
-print(max(arr)
+print(max(arr))
