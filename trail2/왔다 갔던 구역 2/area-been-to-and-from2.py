@@ -1,24 +1,24 @@
-n = int(input())
-OFFSET = 1000
-diff = [0] * (2 * OFFSET + 2)
-
-cur = 0
-for _ in range(n):
-    x, d = input().split()
+n= int(input())
+offset = 1000
+diff = [0] * ((2* offset) + 2) 
+segment = []
+loc = 0
+for i in range(n):
+    x, dir = input().split()
     x = int(x)
-    nxt = cur - x if d == 'L' else cur + x
+    if dir == "R":
+        segment.append((loc, loc+x))
+        loc += x
+    else:
+        segment.append((loc-x, loc))
+        loc -= x
 
-    lo, hi = min(cur, nxt), max(cur, nxt)
-    diff[lo + OFFSET] += 1
-    diff[hi + OFFSET] -= 1
+for start, end in segment:
+    diff[start + offset] += 1
+    diff[end + offset] -= 1
 
-    cur = nxt
+for i in range(1, len(diff)):
+    diff[i] += diff[i-1]
 
-count = 0
-cursum = 0
-for v in diff:
-    cursum += v
-    if cursum >= 2:
-        count += 1
+print(sum(1 for v in diff if v >= 2))
 
-print(count)
