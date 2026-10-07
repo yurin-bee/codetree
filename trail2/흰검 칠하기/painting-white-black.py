@@ -1,44 +1,24 @@
-MAX_K = 100000
-# 변수 선언 및 입력:
-n = int(input())
-a = [0] * (2 * MAX_K + 1)
-cnt_b = [0] * (2 * MAX_K + 1)
-cnt_w = [0] * (2 * MAX_K + 1)
-b, w, g = 0, 0, 0
+N = int(input())
+loc = 0
+cnt = {}    # 타일 -> [흰색 칠한 횟수, 검은색 칠한 횟수]
+last = {}   # 타일 -> 마지막으로 칠한 색 (0=흰, 1=검)
 
-cur = MAX_K
-for _ in range(n):
-    x, c = tuple(input().split())
+for _ in range(N):
+    x, d = input().split()
     x = int(x)
-
-    if c == 'L':
-        # x칸 왼쪽으로 칠합니다.
-        while x > 0:
-            a[cur] = 1
-            cnt_w[cur] += 1
-            x -= 1
-
-            if x: 
-                cur -= 1
+    if d == 'L':
+        tiles, c = range(loc, loc - x, -1), 0     # loc, loc-1, ..., loc-x+1
+        loc -= x - 1
     else:
-        # x칸 오른쪽으로 칠합니다.
-        while x > 0:
-            a[cur] = 2
-            cnt_b[cur] += 1
-            x -= 1
+        tiles, c = range(loc, loc + x), 1         # loc, ..., loc+x-1
+        loc += x - 1
 
-            if x: 
-                cur += 1
+    for p in tiles:
+        cnt.setdefault(p, [0, 0])[c] += 1
+        last[p] = c
 
-for i in range(2 * MAX_K + 1):
-    # 검은색과 흰색으로 두 번 이상 칠해진 타일은 회색입니다.
-    if cnt_b[i] >= 2 and cnt_w[i] >= 2: 
-        g += 1
-    # 그렇지 않으면 현재 칠해진 색깔이 곧 타일의 색깔입니다.
-    elif a[i] == 1: 
-        w += 1
-    elif a[i] == 2: 
-        b += 1
+gray = sum(1 for w, b in cnt.values() if w >= 2 and b >= 2)
+black = sum(1 for p, (w, b) in cnt.items() if not (w >= 2 and b >= 2) and last[p] == 1)
+white = len(cnt) - gray - black
 
-# 정답을 출력합니다.
-print(w, b, g)
+print(white, black, gray)
