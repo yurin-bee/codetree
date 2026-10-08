@@ -1,11 +1,12 @@
 n = int(input())
+digits = []
+while True:
+    if n < 2:
+        digits.append(n)
+        break
+    else:
+        digits.append(n%2)
+        n  //= 2
 
-if n == 0:
-    print(0)
-else:
-    arr = []
-    while n >= 1:
-        arr.append(n % 2)
-        n //= 2
-    for i in arr[::-1]:
-        print(i, end="")
+for d in digits[::-1]:
+    print(d, end="")
