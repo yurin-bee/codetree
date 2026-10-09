@@ -1,12 +1,13 @@
 n = int(input())
 digits = []
+
 while True:
     if n < 2:
         digits.append(n)
         break
     else:
         digits.append(n%2)
-        n  //= 2
+        n //= 2
 
-for d in digits[::-1]:
-    print(d, end="")
+for i in range(digits[::-1]):
+    print(i,end="")
